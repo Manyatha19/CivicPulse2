@@ -7,16 +7,26 @@ function App() {
   const [page, setPage] = useState("home");
 
   if (page === "login") {
-    return <Login />;
+    return (
+      <Login
+        onRegister={() => setPage("register")}
+        onHome={() => setPage("home")}
+      />
+    );
   }
 
   if (page === "register") {
-    return <Register />;
+    return (
+      <Register
+        onLogin={() => setPage("login")}
+        onHome={() => setPage("home")}
+      />
+    );
   }
 
   return (
     <>
-      <Navbar />
+      <Navbar onLogin={() => setPage("login")} />
 
       <main>
         <section className="hero">
