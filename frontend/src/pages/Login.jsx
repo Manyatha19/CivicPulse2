@@ -1,68 +1,54 @@
 import { useState } from "react";
 
-function Login({ onRegister, onHome }) { {
+function Login({ onRegister, onHome }) {
+  const [identifier, setIdentifier] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [form, setForm] = useState({
-    identifier: "",
-    password: "",
-  });
   const [message, setMessage] = useState("");
-
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setMessage("");
 
-    if (!form.identifier.trim()) {
+    if (!identifier.trim()) {
       setMessage("Please enter your email or mobile number.");
       return;
     }
 
-    if (!form.password) {
+    if (!password) {
       setMessage("Please enter your password.");
       return;
     }
 
-    setMessage(
-      "Login system will be connected to the CivicPulse backend soon."
-    );
+    setMessage("Login connection will be added next.");
   };
 
   return (
     <div className="login-page">
       <div className="login-left">
-        <div className="login-brand">
-          <span className="login-logo">C</span>
-          <span>CivicPulse</span>
-        </div>
+        <div className="login-left-content">
+          <div className="login-logo-box">C</div>
 
-        <div className="login-message">
-          <p className="eyebrow">CIVICPULSE</p>
-
-          <h1>
-            Report civic issues.
-            <br />
-            Track real action.
-          </h1>
+          <h1>Welcome to CivicPulse</h1>
 
           <p>
-            Help your city resolve potholes, garbage, broken streetlights,
-            water leaks, and other public problems faster.
+            Report civic issues, track updates, and help improve your
+            community.
           </p>
         </div>
       </div>
 
       <div className="login-right">
         <div className="login-card">
-          <h2>Welcome back</h2>
+          <div className="login-brand">
+            <span className="login-logo">C</span>
+            <span>CivicPulse</span>
+          </div>
+
+          <h2>Log in</h2>
 
           <p className="login-subtitle">
-            Log in to report and track civic issues.
+            Access your CivicPulse account
           </p>
 
           <form onSubmit={handleSubmit}>
@@ -72,10 +58,12 @@ function Login({ onRegister, onHome }) { {
 
             <input
               id="identifier"
-              name="identifier"
               type="text"
-              value={form.identifier}
-              onChange={handleChange}
+              value={identifier}
+              onChange={(e) => {
+                setIdentifier(e.target.value);
+                setMessage("");
+              }}
               placeholder="Enter your email or mobile number"
               autoComplete="username"
             />
@@ -87,10 +75,12 @@ function Login({ onRegister, onHome }) { {
             <div className="password-wrapper">
               <input
                 id="password"
-                name="password"
                 type={showPassword ? "text" : "password"}
-                value={form.password}
-                onChange={handleChange}
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setMessage("");
+                }}
                 placeholder="Enter your password"
                 autoComplete="current-password"
               />
@@ -99,25 +89,20 @@ function Login({ onRegister, onHome }) { {
                 type="button"
                 className="show-password"
                 onClick={() => setShowPassword(!showPassword)}
-                aria-label={
-                  showPassword ? "Hide password" : "Show password"
-                }
               >
                 {showPassword ? "Hide" : "Show"}
               </button>
             </div>
 
-            <div className="forgot-row">
-              <button
-                type="button"
-                className="forgot-btn"
-                onClick={() =>
-                  setMessage("Password reset will be available soon.")
-                }
-              >
-                Forgot password?
-              </button>
-            </div>
+            <button
+              type="button"
+              className="forgot-password"
+              onClick={() =>
+                setMessage("Password reset will be added next.")
+              }
+            >
+              Forgot password?
+            </button>
 
             {message && (
               <div className="login-message-box" role="alert">
@@ -125,36 +110,42 @@ function Login({ onRegister, onHome }) { {
               </div>
             )}
 
-            <button type="submit" className="login-submit">
+            <button
+              type="submit"
+              className="login-submit"
+            >
               Log in
             </button>
           </form>
 
-          <div className="divider">
-            <span>or</span>
-          </div>
+          <button
+            type="button"
+            className="create-account"
+            onClick={onRegister}
+          >
+            Create an account
+          </button>
 
           <button
-  type="button"
-  className="back-home-btn"
-  onClick={onHome}
->
-  ← Back to home
-</button>
-
-          <button
+            type="button"
             className="department-login"
             onClick={() =>
-              setMessage(
-                "Admin and department login will be connected to role-based authentication."
-              )
+              setMessage("Admin and department login will be added next.")
             }
           >
             Admin or department login
           </button>
 
+          <button
+            type="button"
+            className="back-home-btn"
+            onClick={onHome}
+          >
+            ← Back to home
+          </button>
+
           <p className="privacy-text">
-            By continuing, you agree to use CivicPulse responsibly.
+            Your information is protected by CivicPulse.
           </p>
         </div>
       </div>
