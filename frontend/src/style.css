@@ -166,3 +166,286 @@ h1 {
 .back-home-btn:hover {
   text-decoration: underline;
 }
+/* =========================
+   LOGIN PAGE
+========================= */
+
+.login-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: #f8fafc;
+}
+
+.login-left {
+  padding: 50px 8%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(135deg, #eef6ff, #ffffff);
+}
+
+.login-brand,
+.register-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 21px;
+  font-weight: 700;
+  margin-bottom: 70px;
+}
+
+.login-logo {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  background: #1769e0;
+  color: white;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.login-message {
+  max-width: 600px;
+}
+
+.login-message h1 {
+  font-size: clamp(38px, 5vw, 64px);
+}
+
+.login-message > p:last-child {
+  color: #5b6472;
+  font-size: 18px;
+  line-height: 1.7;
+  max-width: 560px;
+}
+
+.login-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 7%;
+  background: #ffffff;
+}
+
+.login-card,
+.register-card {
+  width: 100%;
+  max-width: 450px;
+}
+
+.login-card h2,
+.register-card h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.login-subtitle {
+  color: #6b7280;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.login-card form,
+.register-card form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-card label,
+.register-card label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #374151;
+}
+
+.login-card input,
+.register-card input {
+  width: 100%;
+  padding: 13px 14px;
+  margin-bottom: 20px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+  background: white;
+}
+
+.login-card input:focus,
+.register-card input:focus {
+  border-color: #1769e0;
+  box-shadow: 0 0 0 3px rgba(23, 105, 224, 0.1);
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  padding-right: 65px;
+}
+
+.show-password {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border: none;
+  background: transparent;
+  color: #1769e0;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.forgot-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -8px;
+  margin-bottom: 20px;
+}
+
+.forgot-btn {
+  border: none;
+  background: transparent;
+  color: #1769e0;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.login-message-box {
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  border-radius: 8px;
+  background: #fff7ed;
+  color: #9a3412;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.login-submit {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background: #1769e0;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.login-submit:hover {
+  background: #1258bd;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 25px 0;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: #e5e7eb;
+}
+
+.create-account,
+.department-login {
+  width: 100%;
+  padding: 13px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.create-account {
+  border: 1px solid #1769e0;
+  background: white;
+  color: #1769e0;
+  margin-bottom: 12px;
+}
+
+.department-login {
+  border: none;
+  background: #f1f5f9;
+  color: #374151;
+}
+
+.privacy-text {
+  margin-top: 22px;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+
+/* =========================
+   REGISTER PAGE
+========================= */
+
+.register-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #eef6ff, #ffffff);
+}
+
+.register-card {
+  background: white;
+  padding: 40px;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  box-shadow: 0 15px 45px rgba(15, 23, 42, 0.08);
+}
+
+.register-brand {
+  margin-bottom: 35px;
+}
+
+.register-card h1 {
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 850px) {
+  .login-page {
+    grid-template-columns: 1fr;
+  }
+
+  .login-left {
+    display: none;
+  }
+
+  .login-right {
+    min-height: 100vh;
+    padding: 30px 20px;
+  }
+
+  .login-card {
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 500px) {
+  .register-card {
+    padding: 28px 22px;
+  }
+
+  .login-card h2,
+  .register-card h1 {
+    font-size: 28px;
+  }
+}
