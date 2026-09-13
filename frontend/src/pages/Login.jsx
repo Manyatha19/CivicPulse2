@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Login() {
+function Login({ onRegister, onHome }) { {
   const [showPassword, setShowPassword] = useState(false);
   const [form, setForm] = useState({
     identifier: "",
@@ -135,13 +135,12 @@ function Login() {
           </div>
 
           <button
-            className="create-account"
-            onClick={() =>
-              setMessage("Registration page will be connected next.")
-            }
-          >
-            Create an account
-          </button>
+  type="button"
+  className="back-home-btn"
+  onClick={onHome}
+>
+  ← Back to home
+</button>
 
           <button
             className="department-login"
