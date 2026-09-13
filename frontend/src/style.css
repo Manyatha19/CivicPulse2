@@ -153,3 +153,16 @@ h1 {
     width: 100%;
   }
 }
+.back-home-btn {
+  display: block;
+  margin: 18px auto 0;
+  border: none;
+  background: transparent;
+  color: #1769e0;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.back-home-btn:hover {
+  text-decoration: underline;
+}
