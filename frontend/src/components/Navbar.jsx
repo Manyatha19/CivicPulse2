@@ -1,4 +1,4 @@
-function Navbar() {
+function Navbar({ onLogin }) {
   return (
     <nav className="navbar">
       <div className="logo">
@@ -9,7 +9,10 @@ function Navbar() {
       <div className="nav-links">
         <a href="#about">About</a>
         <a href="#help">How it works</a>
-        <button className="login-btn">Log in</button>
+
+        <button className="login-btn" onClick={onLogin}>
+          Log in
+        </button>
       </div>
     </nav>
   );
