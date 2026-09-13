@@ -1,6 +1,8 @@
 import { useState } from "react";
 
-function Register({ onLogin, onHome}) {
+const API_URL = "http://localhost:8000";
+
+function Register({ onLogin, onHome }) {
   const [showPassword, setShowPassword] = useState(false);
 
   const [form, setForm] = useState({
@@ -11,16 +13,20 @@ function Register({ onLogin, onHome}) {
   });
 
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
     });
+
+    setMessage("");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setMessage("");
 
     if (!form.name.trim()) {
       setMessage("Please enter your name.");
@@ -47,14 +53,47 @@ function Register({ onLogin, onHome}) {
       return;
     }
 
-    setMessage(
-      "Registration system will be connected to the CivicPulse backend soon."
-    );
+    try {
+      setLoading(true);
+
+      const response = await fetch(`${API_URL}/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setMessage(data.detail || "Registration failed. Please try again.");
+        return;
+      }
+
+      setMessage(
+        "Account created successfully! You can now log in."
+      );
+
+      setForm({
+        name: "",
+        email: "",
+        mobile: "",
+        password: "",
+      });
+    } catch (error) {
+      setMessage(
+        "We couldn't connect to CivicPulse. Check your internet connection and try again."
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="register-page">
       <div className="register-card">
+
         <div className="register-brand">
           <span className="login-logo">C</span>
           <span>CivicPulse</span>
@@ -67,6 +106,7 @@ function Register({ onLogin, onHome}) {
         </p>
 
         <form onSubmit={handleSubmit}>
+
           <label htmlFor="name">Full name</label>
 
           <input
@@ -106,6 +146,7 @@ function Register({ onLogin, onHome}) {
           <label htmlFor="password">Password</label>
 
           <div className="password-wrapper">
+
             <input
               id="password"
               name="password"
@@ -123,37 +164,48 @@ function Register({ onLogin, onHome}) {
             >
               {showPassword ? "Hide" : "Show"}
             </button>
+
           </div>
 
           {message && (
-            <div className="login-message-box" role="alert">
+            <div
+              className="login-message-box"
+              role="alert"
+            >
               {message}
             </div>
           )}
 
-          <button type="submit" className="login-submit">
-            Create account
+          <button
+            type="submit"
+            className="login-submit"
+            disabled={loading}
+          >
+            {loading ? "Creating account..." : "Create account"}
           </button>
-        </form>
-        <button
-  type="button"
-  className="department-login"
-  onClick={onLogin}
->
-  Already have an account? Log in
-</button>
 
-<button
-  type="button"
-  className="back-home-btn"
-  onClick={onHome}
->
-  ← Back to home
-</button>
+        </form>
+
+        <button
+          type="button"
+          className="department-login"
+          onClick={onLogin}
+        >
+          Already have an account? Log in
+        </button>
+
+        <button
+          type="button"
+          className="back-home-btn"
+          onClick={onHome}
+        >
+          ← Back to home
+        </button>
 
         <p className="privacy-text">
           Your personal information will be protected by CivicPulse.
         </p>
+
       </div>
     </div>
   );
