@@ -1,1 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CivicPulse</title>
 
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #f5f8fc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      min-height: 600px;
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    }
+
+    .left {
+      width: 50%;
+      background: #1769e0;
+      color: white;
+      padding: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .logo {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 35px;
+    }
+
+    .left h1 {
+      font-size: 42px;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .left p {
+      font-size: 17px;
+      line-height: 1.6;
+      opacity: 0.95;
+    }
+
+    .right {
+      width: 50%;
+      padding: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .right h2 {
+      font-size: 30px;
+      margin-bottom: 10px;
+      color: #172033;
+    }
+
+    .subtitle {
+      color: #687386;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #273142;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #d6dce5;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 15px;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #1769e0;
+    }
+
+    .password-row {
+      position: relative;
+    }
+
+    .show-password {
+      position: absolute;
+      right: 12px;
+      top: 13px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: #1769e0;
+    }
+
+    .forgot {
+      text-align: right;
+      margin-top: -10px;
+      margin-bottom: 22px;
+    }
+
+    .forgot a {
+      color: #1769e0;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .login-btn,
+    .register-btn {
+      width: 100%;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .login-btn {
+      border: none;
+      background: #1769e0;
+      color: white;
+    }
+
+    .register-btn {
+      margin-top: 12px;
+      border: 1px solid #1769e0;
+      background: white;
+      color: #1769e0;
+    }
+
+    .staff-login {
+      text-align: center;
+      margin-top: 25px;
+    }
+
+    .staff-login a {
+      color: #1769e0;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .message {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #d64545;
+    }
+
+    @media (max-width: 750px) {
+      .container {
+        flex-direction: column;
+        width: 95%;
+      }
+
+      .left,
+      .right {
+        width: 100%;
+        padding: 35px;
+      }
+
+      .left h1 {
+        font-size: 30px;
+      }
+
+      .left {
+        min-height: 280px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <section class="left">
+      <div class="logo">CivicPulse</div>
+
+      <h1>Report civic issues.<br>Track real action.</h1>
+
+      <p>
+        Help your city resolve potholes, garbage,
+        broken streetlights, water leaks, and other
+        public problems faster.
+      </p>
+    </section>
+
+    <section class="right">
+
+      <h2>Welcome back</h2>
+
+      <p class="subtitle">
+        Log in to report and track civic issues.
+      </p>
+
+      <form id="loginForm">
+
+        <label for="email">Email or mobile number</label>
+        <input
+          type="text"
+          id="email"
+          placeholder="Enter your email or mobile number"
+          required
+        >
+
+        <label for="password">Password</label>
+
+        <div class="password-row">
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+            required
+          >
+
+          <button
+            type="button"
+            class="show-password"
+            onclick="togglePassword()">
+            Show
+          </button>
+        </div>
+
+        <div class="forgot">
+          <a href="#">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="login-btn">
+          Log in
+        </button>
+
+        <button type="button" class="register-btn">
+          Create an account
+        </button>
+
+        <div class="message" id="message"></div>
+
+      </form>
+
+      <div class="staff-login">
+        <a href="#">Admin or department login</a>
+      </div>
+
+    </section>
+
+  </div>
+
+  <script>
+    function togglePassword() {
+      const password = document.getElementById("password");
+      const button = document.querySelector(".show-password");
+
+      if (password.type === "password") {
+        password.type = "text";
+        button.textContent = "Hide";
+      } else {
+        password.type = "password";
+        button.textContent = "Show";
+      }
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const message = document.getElementById("message");
+      message.textContent = "Login system will be connected to the backend soon.";
+    });
+  </script>
+
+</body>
+</html>
