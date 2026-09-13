@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Register() {
+function Register({ onLogin, onHome}) {
   const [showPassword, setShowPassword] = useState(false);
 
   const [form, setForm] = useState({
@@ -135,6 +135,21 @@ function Register() {
             Create account
           </button>
         </form>
+        <button
+  type="button"
+  className="department-login"
+  onClick={onLogin}
+>
+  Already have an account? Log in
+</button>
+
+<button
+  type="button"
+  className="back-home-btn"
+  onClick={onHome}
+>
+  ← Back to home
+</button>
 
         <p className="privacy-text">
           Your personal information will be protected by CivicPulse.
