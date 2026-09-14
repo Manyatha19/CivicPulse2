@@ -11,6 +11,7 @@ function App() {
       <Login
         onRegister={() => setPage("register")}
         onHome={() => setPage("home")}
+        onLogin={()=> setPage("dashboard")}
       />
     );
   }
