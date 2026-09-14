@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Login({ onRegister, onHome }) {
+function Login({ onRegister, onHome, onLogin }) {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -19,8 +19,8 @@ function Login({ onRegister, onHome }) {
       setMessage("Please enter your password.");
       return;
     }
-
-    setMessage("Login connection will be added next.");
+    
+    onLogin();
   };
 
   return (
