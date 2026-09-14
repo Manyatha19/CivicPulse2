@@ -37,7 +37,7 @@ if (page === "dashboard") {
   return (
     <Dashboard
       onHome={() => setPage("home")}
-      onReport={() => setPge("report")}
+      onReport={() => setPage("report")}
         
     />
   );
