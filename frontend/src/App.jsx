@@ -1,3 +1,4 @@
+import ReportIssue from "./pages/ReportIssue";
 import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
@@ -25,10 +26,19 @@ function App() {
       />
     );
   }
+  if (page === "report") {
+  return (
+    <ReportIssue
+      onBack={() => setPage("dashboard")}
+    />
+  );
+}
 if (page === "dashboard") {
   return (
     <Dashboard
       onHome={() => setPage("home")}
+      onReport={() => setPge("report")}
+        
     />
   );
 }
