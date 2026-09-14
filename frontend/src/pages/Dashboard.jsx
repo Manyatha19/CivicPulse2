@@ -1,4 +1,4 @@
-function Dashboard({ onHome }) {
+function Dashboard({ onHome,onReport }) {
   return (
     <div className="dashboard-page">
       <nav className="dashboard-navbar">
@@ -32,9 +32,12 @@ function Dashboard({ onHome }) {
               streetlights, and other civic problems.
             </p>
 
-            <button className="primary-btn">
-              Report Issue
-            </button>
+            <button
+  className="primary-btn"
+  onClick={onReport}
+>
+  Report Issue
+</button>
           </div>
 
           <div className="dashboard-card">
