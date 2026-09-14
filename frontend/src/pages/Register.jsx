@@ -74,7 +74,7 @@ function Register({ onLogin, onHome }) {
       setMessage(
         "Account created successfully! You can now log in."
       );
-
+      onRegistered(form.name.trim());
       setForm({
         name: "",
         email: "",
