@@ -2,6 +2,7 @@ import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   const [page, setPage] = useState("home");
@@ -24,7 +25,13 @@ function App() {
       />
     );
   }
-
+if (page === "dashboard") {
+  return (
+    <Dashboard
+      onHome={() => setPage("home")}
+    />
+  );
+}
   return (
     <>
       <Navbar onLogin={() => setPage("login")} />
